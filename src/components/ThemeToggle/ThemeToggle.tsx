@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import styles from "./ThemeToggle.module.css";
-import Image from 'next/image';
-import { ThemeContext } from './../../context/ThemeContextProvider';
+import Image from "next/image";
+import { ThemeContext } from "./../../context/ThemeContextProvider";
 
 const ThemeToggle = () => {
   // const {theme} = useContext(ThemeContext);
@@ -15,7 +15,7 @@ const ThemeToggle = () => {
       <div className={styles.ball}></div>
       <Image src="/sun.png" alt="" width={14} height={14} />
     </div>
-  )
-}
+  );
+};
 
-export default ThemeToggle
+export default ThemeToggle;
