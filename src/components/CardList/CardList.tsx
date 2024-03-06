@@ -1,8 +1,11 @@
 import React from 'react'
+import { Pagination } from '..'
 
 const CardList = () => {
   return (
-    <div>CardList</div>
+    <div>
+        <Pagination/>
+    </div>
   )
 }
 
