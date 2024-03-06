@@ -5,3 +5,5 @@ export * from "./Footer";
 export * from "./Menu";
 export * from "./Navbar";
 export * from "./Pagination";
+export * from "./ThemeToggle";
+export * from "./AuthLinks";
