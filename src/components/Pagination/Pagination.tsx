@@ -10,7 +10,7 @@ interface IProps {
     hasNext?: boolean;
 }
 
-const Pagination: FC<IProps> = ({ page, hasPrev, hasNext }) => {
+const Pagination: FC<IProps> = ({ page = 0, hasPrev, hasNext }) => {
     const router = useRouter();
 
     return (
