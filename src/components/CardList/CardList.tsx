@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pagination } from '..';
 import styles from './CardList.module.css';
+import Card from '../Card/Card';
 
 const CardList = () => {
     return (
@@ -11,6 +12,8 @@ const CardList = () => {
                     {/* {posts?.map((item) => (
           <Card item={item} key={item._id} />
         ))} */}
+
+                    {/* <Card   /> */}
                 </div>
                 <Pagination />
             </div>

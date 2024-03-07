@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from './CategoryList.module.css';
+import Link from 'next/link';
 
 const CategoryList = () => {
     return (
@@ -25,6 +26,20 @@ const CategoryList = () => {
           {item.title}
         </Link>
       ))} */}
+
+                <Link
+                    href='/blog?cat=style'
+                    // className={`${styles.category} ${styles['food']}`}
+                >
+                    <Image
+                        src='/moon.png'
+                        alt=''
+                        width={14}
+                        height={14}
+                        className={styles.image}
+                    />
+                    Sun
+                </Link>
             </div>
         </div>
     );
