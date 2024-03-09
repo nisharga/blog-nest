@@ -2,9 +2,14 @@
 import Image from 'next/image';
 import styles from './writePage.module.css';
 import { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 const Write = () => {
     const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('');
+    console.log('🚀 ~ Write ~ value:', value);
+
     return (
         <div className={styles.container}>
             <input type='text' placeholder='Title' className={styles.input} />
@@ -55,7 +60,17 @@ const Write = () => {
                         </button>
                     </div>
                 )}
+
+                <ReactQuill
+                    theme='bubble'
+                    className={styles.textArea}
+                    value={value}
+                    onChange={setValue}
+                    placeholder='Tell your story'
+                />
             </div>
+
+            <button className={styles.publish}>Publish</button>
         </div>
     );
 };
