@@ -2,26 +2,30 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import styles from './AuthLinks.module.css';
+import { signOut, useSession } from 'next-auth/react';
 
 const AuthLinks = () => {
     const [open, setOpen] = useState(false);
 
-    const status = 'notauthenticated';
+    const { data, status } = useSession();
     return (
         <>
-            {status === 'notauthenticated' ? (
-                <Link href='/login' className={styles.link}>
-                    Login
-                </Link>
-            ) : (
+            {status === 'authenticated' ? (
                 <>
                     <Link href='/write' className={styles.link}>
                         Write
                     </Link>
-                    <span className={styles.link}>Logout</span>
+                    <span className={styles.link} onClick={() => signOut()}>
+                        Logout
+                    </span>
                 </>
+            ) : (
+                <Link href='/login' className={styles.link}>
+                    Login
+                </Link>
             )}
 
+            {/* mobile device */}
             <div className={styles.burger} onClick={() => setOpen(!open)}>
                 <div className={styles.line}></div>
                 <div className={styles.line}></div>
@@ -29,16 +33,24 @@ const AuthLinks = () => {
             </div>
             {open && (
                 <div className={styles.responsiveMenu}>
-                    <Link href='/'>Homepage</Link>
-                    <Link href='/'>About</Link>
-                    <Link href='/'>Contact</Link>
-                    {status === 'notauthenticated' ? (
-                        <Link href='/login'>Login</Link>
-                    ) : (
+                    <Link href='/' onClick={() => setOpen(!open)}>
+                        Homepage
+                    </Link>
+                    <Link href='/' onClick={() => setOpen(!open)}>
+                        About
+                    </Link>
+                    <Link href='/' onClick={() => setOpen(!open)}>
+                        Contact
+                    </Link>
+                    {status === 'authenticated' ? (
                         <>
                             <Link href='/write'>Write</Link>
-                            <span className={styles.link}>Logout</span>
+                            <button onClick={() => signOut()}>Logout</button>
                         </>
+                    ) : (
+                        <Link href='/login' onClick={() => setOpen(!open)}>
+                            Login
+                        </Link>
                     )}
                 </div>
             )}
