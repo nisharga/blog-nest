@@ -3,7 +3,7 @@ import { Pagination } from '..';
 import styles from './CardList.module.css';
 import Card from '../Card/Card';
 
-const CardList = () => {
+const CardList = ({ page, cat }: any) => {
     return (
         <div>
             <div className={styles.container}>
