@@ -2,9 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import styles from './CategoryList.module.css';
 import Link from 'next/link';
+import { SITE_DOMAIN } from '@/utlis/homeurl';
 
 const getData = async () => {
-    const res = await fetch('http://localhost:3001/api/categories', {
+    const res = await fetch(`${SITE_DOMAIN}/api/categories`, {
         cache: 'no-store'
     });
 
