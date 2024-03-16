@@ -2,10 +2,11 @@ import React from 'react';
 import { Pagination } from '..';
 import styles from './CardList.module.css';
 import Card from '../Card/Card';
+import { SITE_DOMAIN } from '@/utlis/homeurl';
 
 const getData = async (page: number, cat: string) => {
     const res = await fetch(
-        `http://localhost:3001/api/posts?page=${page}&cat=${cat || ''}`,
+        `${SITE_DOMAIN}/api/posts?page=${page}&cat=${cat || ''}`,
         {
             cache: 'no-store'
         }
