@@ -6,7 +6,7 @@ import { SITE_DOMAIN } from '@/utlis/homeurl';
 
 const getData = async (page: number, cat: string) => {
     const res = await fetch(
-        `${SITE_DOMAIN}/api/posts?page=${page}&cat=${cat || ''}`,
+        `http://localhost:3000/api/posts?page=${page}&cat=${cat || ''}`,
         {
             cache: 'no-store'
         }
