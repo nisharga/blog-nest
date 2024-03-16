@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { SITE_DOMAIN } from '@/utlis/homeurl';
 
 const getData = async () => {
-    const res = await fetch(`http://localhost:3000/api/categories`, {
+    const res = await fetch(`${SITE_DOMAIN}/api/categories`, {
         cache: 'no-store'
     });
 
@@ -22,11 +22,11 @@ const CategoryList = async () => {
         <div className={styles.container}>
             <h1 className={styles.title}>Popular Categories...</h1>
             <div className={styles.categories}>
-                {data?.map((item: any) => (
+                {data?.map((item: any, index: number) => (
                     <Link
                         href='/blog?cat=style'
                         className={`${styles.category} ${styles[item.slug]}`}
-                        key={item._id}
+                        key={index}
                     >
                         {item.img && (
                             <Image
@@ -43,7 +43,7 @@ const CategoryList = async () => {
 
                 <Link
                     href='/blog?cat=style'
-                    // className={`${styles.category} ${styles['food']}`}
+                    className={`${styles.category} ${styles['food']}`}
                 >
                     <Image
                         src='/moon.png'
