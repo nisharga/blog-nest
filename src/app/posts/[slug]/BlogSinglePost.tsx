@@ -14,7 +14,6 @@ const BlogSinglePost = (slug: any) => {
             .then((data: any) => setPost(data));
     }, [slug]);
 
-    console.log('🚀 ~ BlogSinglePost ~ post:', post);
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer}>
@@ -57,7 +56,7 @@ const BlogSinglePost = (slug: any) => {
                         dangerouslySetInnerHTML={{ __html: post?.desc }}
                     />
                     <div className={styles.comment}>
-                        <Comments />
+                        <Comments slug={slug.slug} />
                     </div>
                 </div>
                 <Menu />

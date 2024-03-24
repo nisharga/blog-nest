@@ -6,7 +6,8 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'i.ibb.co'
             }
-        ]
+        ],
+        domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com']
     }
 };
 
