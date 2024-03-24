@@ -8,7 +8,10 @@ import 'react-quill/dist/quill.bubble.css';
 const Write = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
-    console.log('🚀 ~ Write ~ value:', value);
+    const [file, setFile] = useState(null);
+    const [media, setMedia] = useState('');
+    const [title, setTitle] = useState('');
+    const [catSlug, setCatSlug] = useState('');
 
     return (
         <div className={styles.container}>
