@@ -1,38 +1,30 @@
 import { getAuthSession } from '@/utlis/auth';
 import prisma from '@/utlis/connect';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export const GET = async (req: NextRequest) => {
+export const GET = async (req: any) => {
     const { searchParams } = new URL(req.url);
-    const page = searchParams.get('page');
-    const cat = searchParams.get('cat');
 
-    const POST_PER_PAGE = 2;
-    const pageNumber = page ? parseInt(page, 10) : 1;
-
-    const query = {
-        take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (pageNumber - 1),
-        where: {
-            ...(cat && { catSlug: cat })
-        }
-    };
+    const postSlug = searchParams.get('postSlug');
 
     try {
-        const [posts, count] = await prisma.$transaction([
-            prisma.post.findMany(query),
-            prisma.post.count({ where: query.where })
-        ]);
-        return new NextResponse(JSON.stringify({ posts, count }));
+        const comments = await prisma.comment.findMany({
+            where: {
+                ...(postSlug && { postSlug })
+            },
+            include: { user: true }
+        });
+
+        return new NextResponse(JSON.stringify(comments));
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return new NextResponse(
             JSON.stringify({ message: 'Something went wrong!' })
         );
     }
 };
 
-// CREATE A POST
+// CREATE A COMMENT
 export const POST = async (req: any) => {
     const session = await getAuthSession();
 
@@ -45,7 +37,7 @@ export const POST = async (req: any) => {
     try {
         const body = await req.json();
 
-        const post = await prisma.post.create({
+        const comment = await prisma.comment.create({
             data: { ...body, userEmail: session?.user.email }
         });
 
